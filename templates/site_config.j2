@@ -1,0 +1,23 @@
+<VirtualHost *:80 >
+  ServerAlias *
+  DocumentRoot {{ web_root }}
+  <Directory "{{ web_root }}">
+    Options -Indexes +FollowSymLinks -MultiViews
+    AllowOverride All
+    Require all granted
+  </Directory>
+</VirtualHost>
+{% if self_signed %}
+<VirtualHost *:443 >
+  ServerAlias *
+  DocumentRoot {{ web_root }}
+  <Directory "{{ web_root }}">
+    Options -Indexes +FollowSymLinks -MultiViews
+    AllowOverride All
+    Require all granted
+  </Directory>
+  SSLEngine on
+  SSLCertificateFile      {{ ssl_path }}/server.crt 
+  SSLCertificateKeyFile {{ ssl_path }}/server.pem
+</VirtualHost>
+{% endif %}
