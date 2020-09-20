@@ -14,7 +14,7 @@
   apache2_module:
     state: present
     name: ssl
-    
+
 - name: Delete default apache site
   file:
     path: /etc/apache2/sites-enabled/000-default.conf
@@ -69,7 +69,15 @@
     src: /etc/apache2/sites-available/{{ site_name }}.conf
     dest: /etc/apache2/sites-enabled/{{ site_name }}.conf 
     state: link
-
+- name: Create dummy site  
+  copy:
+    src: dummy.html
+    dest: "{{ web_root }}/index.html"
+    mode: 0755 
+    owner: "{{ apache_user }}"
+    group: "{{ apache_user }}"
+  when: make_dummy_site
+  
 - name: Set permissions
   file:
     path: "{{ web_root }}"
