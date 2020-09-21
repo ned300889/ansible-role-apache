@@ -1,2 +1,6 @@
 ---
 # defaults file for apache
+disable_default: True
+self_signed: True
+ssl_path: "/etc/ssl/{{ site_name }}"
+make_dummy_site: True
