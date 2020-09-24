@@ -53,6 +53,7 @@
     path: "{{ ssl_path }}/server.csr"
     privatekey_path: "{{ ssl_path }}/server.pem"
     common_name: "{{ site_name }}"
+    mode: 0600
   when: self_signed
 
 - name: Generate a Self Signed OpenSSL certificate
@@ -77,11 +78,11 @@
     owner: "{{ apache_user }}"
     group: "{{ apache_user }}"
   when: make_dummy_site
-  
+
 - name: Set permissions
   file:
     path: "{{ web_root }}"
-    owner: "{{ apache_user}}"
+    owner: "{{ apache_user }}"
     recurse: True
     mode: 0755
 
