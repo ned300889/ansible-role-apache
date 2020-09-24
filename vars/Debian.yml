@@ -4,3 +4,6 @@ apache_user: www-data
 __apache_packages:
   - apache2
   - apache2-utils
+__py_ssl:
+  - pyopenssl
+  - cryptography

@@ -22,7 +22,7 @@
 - name: Create dummy site  
   copy:
     src: dummy.html
-    dest: "{{ web_root }}/index.html"
+    dest: "{{ document_root }}/index.html"
     mode: 0755 
     owner: "{{ apache_user }}"
     group: "{{ apache_user }}"
