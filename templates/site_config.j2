@@ -1,7 +1,7 @@
 <VirtualHost *:80 >
   ServerAlias *
-  DocumentRoot {{ web_root }}
-  <Directory "{{ web_root }}">
+  DocumentRoot {{ document_root }}
+  <Directory "{{ document_root }}">
     Options -Indexes +FollowSymLinks -MultiViews
     AllowOverride All
     Require all granted
@@ -10,8 +10,8 @@
 {% if self_signed %}
 <VirtualHost *:443 >
   ServerAlias *
-  DocumentRoot {{ web_root }}
-  <Directory "{{ web_root }}">
+  DocumentRoot {{ document_root }}
+  <Directory "{{ document_root }}">
     Options -Indexes +FollowSymLinks -MultiViews
     AllowOverride All
     Require all granted

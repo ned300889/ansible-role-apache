@@ -1,0 +1,36 @@
+---
+- name: Generate site config
+  template:
+    src: site_config.j2
+    dest: /etc/apache2/sites-available/{{ site_name }}.conf 
+    owner: "{{ apache_user }}"
+    mode: 0600
+
+- name: Create directories for web root
+  file:
+    path: "{{ web_root }}"
+    state: directory
+    mode: 0755
+    owner: "{{ apache_user }}"
+
+- name: Enable site config
+  file:
+    src: /etc/apache2/sites-available/{{ site_name }}.conf
+    dest: /etc/apache2/sites-enabled/{{ site_name }}.conf 
+    state: link
+
+- name: Create dummy site  
+  copy:
+    src: dummy.html
+    dest: "{{ web_root }}/index.html"
+    mode: 0755 
+    owner: "{{ apache_user }}"
+    group: "{{ apache_user }}"
+  when: make_dummy_site
+
+- name: Set permissions
+  file:
+    path: "{{ web_root }}"
+    owner: "{{ apache_user }}"
+    recurse: True
+    mode: 0755
