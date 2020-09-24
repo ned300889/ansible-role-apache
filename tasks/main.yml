@@ -1,89 +1,17 @@
 ---
-- name: Only run update cache on debian
-  apt:
-    update_cache: yes
-    cache_valid_time: 3600
-  when: ansible_os_family  == 'Debian' or ansible_distribution == 'Ubuntu'
+# Include variables and define needed variables.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Install apache2
-  apt:
-    name: apache2
-    state: present
 
-- name: Enable modules 
-  apache2_module:
-    state: present
-    name: ssl
+# Setup/install tasks.
+- include_tasks: "{{ ansible_os_family }}-apache-setup.yml"
 
-- name: Delete default apache site
-  file:
-    path: /etc/apache2/sites-enabled/000-default.conf
-    state: absent
-  when: disable_default 
+# Configure server.
+- include_tasks: "{{ ansible_os_family }}-apache-site.yml"
 
-- name: Generate site config
-  template:
-    src: site_config.j2
-    dest: /etc/apache2/sites-available/{{ site_name }}.conf 
-    owner: "{{ apache_user }}"
-    mode: 0600
-
-- name: Create directories for web root
-  file:
-    path: "{{ web_root }}"
-    state: directory
-    mode: 0755
-    owner: "{{ apache_user }}"
-
-- name: Create directories for self signed certs 
-  file:
-    path: "{{ ssl_path }}"
-    state: directory
-    mode: 0755
-    owner: root 
-  when: self_signed
-
-- name: Generate an OpenSSL private key with the default values (4096 bits, RSA) and a passphrase
-  openssl_privatekey:
-    path: "{{ ssl_path }}/server.pem"
-  when: self_signed
-
-- name: Generate an OpenSSL Certificate Signing Request
-  openssl_csr:
-    path: "{{ ssl_path }}/server.csr"
-    privatekey_path: "{{ ssl_path }}/server.pem"
-    common_name: "{{ site_name }}"
-  when: self_signed
-
-- name: Generate a Self Signed OpenSSL certificate
-  openssl_certificate:
-    path: "{{ ssl_path }}/server.crt"
-    privatekey_path: "{{ ssl_path }}/server.pem"
-    csr_path: "{{ ssl_path }}/server.csr"
-    provider: selfsigned
-    mode: 0600
-  when: self_signed
-
-- name: Enable site config
-  file:
-    src: /etc/apache2/sites-available/{{ site_name }}.conf
-    dest: /etc/apache2/sites-enabled/{{ site_name }}.conf 
-    state: link
-- name: Create dummy site  
-  copy:
-    src: dummy.html
-    dest: "{{ web_root }}/index.html"
-    mode: 0755 
-    owner: "{{ apache_user }}"
-    group: "{{ apache_user }}"
-  when: make_dummy_site
-  
-- name: Set permissions
-  file:
-    path: "{{ web_root }}"
-    owner: "{{ apache_user}}"
-    recurse: True
-    mode: 0755
+# Set up certificates.
+- include_tasks: "ssl.yml"
 
 - name: Start server
   systemd: 
