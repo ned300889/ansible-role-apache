@@ -7,3 +7,5 @@ __apache_packages:
 __py_ssl:
   - pyopenssl
   - cryptography
+
+web_service_name: apache2

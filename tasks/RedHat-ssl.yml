@@ -1,0 +1,39 @@
+---
+- name: Install python-pip.
+  yum:
+    name: python3-pip
+    state: present
+- name: Install required modules
+  pip:
+    name: "{{ __py_ssl }}"
+    state: present
+
+- name: Create directories for self signed certs 
+  file:
+    path: "{{ ssl_path }}"
+    state: directory
+    mode: 0755
+    owner: root 
+  when: self_signed
+
+- name: Generate an OpenSSL private key with the default values (4096 bits, RSA) and a passphrase
+  openssl_privatekey:
+    path: "{{ ssl_path }}/server.pem"
+  when: self_signed
+
+- name: Generate an OpenSSL Certificate Signing Request
+  openssl_csr:
+    path: "{{ ssl_path }}/server.csr"
+    privatekey_path: "{{ ssl_path }}/server.pem"
+    common_name: "{{ site_name }}"
+    mode: 0600
+  when: self_signed
+
+- name: Generate a Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: "{{ ssl_path }}/server.crt"
+    privatekey_path: "{{ ssl_path }}/server.pem"
+    csr_path: "{{ ssl_path }}/server.csr"
+    provider: selfsigned
+    mode: 0600
+  when: self_signed

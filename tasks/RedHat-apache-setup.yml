@@ -1,0 +1,29 @@
+---
+- name: Install apache2
+  yum:
+    name: 
+    - httpd
+    - mod_ssl
+    state: present
+  notify: restart apache
+
+
+
+
+- name: Append sites-enabled configs 
+  lineinfile:
+    dest: "{{ apache_path }}/conf/httpd.conf"
+    line: "IncludeOptional sites-enabled/*.conf"
+    state: present
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ apache_path }}/sites-available"
+    state: directory
+    mode: '0755'
+
+- name: Create sites-enabled directory.
+  file:
+    path: "{{ apache_path }}/sites-enabled"
+    state: directory
+    mode: '0755'

@@ -11,11 +11,11 @@
 - include_tasks: "{{ ansible_os_family }}-apache-site.yml"
 
 # Set up certificates.
-- include_tasks: "ssl.yml"
+- include_tasks: "{{ ansible_os_family }}-ssl.yml"
 
 - name: Start server
   systemd: 
-    name: apache2
+    name: "{{ web_service_name }}"
     state: started  
 
 
