@@ -11,9 +11,9 @@ galaxy_info:
   platforms:
   - name: Ubuntu
     versions: 
-    - Focal
-    - Bionic
-    - Xenial
+    - "focal"
+    - "bionic"
+    - "xenial"
 
   galaxy_tags: []
 
