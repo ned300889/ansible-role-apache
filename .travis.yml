@@ -26,3 +26,5 @@ notifications:
   slack:
     rooms:  
       - secure: QpMaf+pT6BStN3jn8t0hMMKP6u9BOl4vMSaFYt6/hj+JbkO0XrTKfelhkEukHWv5+si5pRpBE9JySzx7LJSG/3JBRMzTZyKPfOP0r5qUyykVptDvG7ItsbE04Ttm4qPqjZToJVOwAxdSSow8dTLMzWqEb0sXqm681stTg++nfXR99ruPQYosTJgKR84lbVcect4GYHefQKY87WVJfmF1uL1mR1oFJzejbm69IL4gk9dOQunOmuRs7lpzvn8vjfXJnlC6D3xFKSt+F3sAVD1d3bLuJfYR3OoQd9fRDk/9sjBKW+wRfhFJ8OZSC6GqZvIFBodme4+KJt/foSVk47pg3FxFPh7HqQ7eGoGZoYYJZuhQLDiYwwsZmDnqE/lFNUi1xXJEy+DkWCzhEmZ7hztEsedwDUtKrf/FVcT9qHiB3aziCdzZyTc4GccGc+2f5sEI1THBkpkPW6Ol63i1UW7l+pTFEIu8Gy+6mtoUaOJWtQiDDPBZFuJpp7hW0rlyYxLqArLUDax+qv94rltrCHWWXvHKUR+H25NPFtzh6pFDW4zIOYbU6zyjJ4OXmOQzQDcN2poqveCVlGV5s5Acm2ZtU1RjY3nHL9ihaybytBx3vrdDLW3UFYRblswIX9dpxYHwvYJuTNpq5aaGiQZwdi+mhw9etfXI0hJbv68AAGkq1Pw=
+    on_success: always  # change: send a notification when the build status changes.
+    on_failure: always  # always: always send a notification.
