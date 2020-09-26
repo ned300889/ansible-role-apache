@@ -1,37 +1,59 @@
+[![Build Status](https://travis-ci.com/ned300889/apache.svg?branch=master)](https://travis-ci.com/ned300889/apache) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 Role Name
 =========
 Apache role
 
-[![Build Status](https://travis-ci.com/ned300889/apache.svg?branch=master)](https://travis-ci.com/ned300889/apache)
-
-Requirements
-------------
-Bootstrap server with python
 
 Role Variables
 --------------
+Following variables can be set at the playbook level, currently defined in defaults.yml
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+    disable_defaults: True
 
-Dependencies
-------------
+Disable default site, only applicable to Ubuntu
 
+    self_signed: True
+    ssl_path: "/etc/ssl/{{ site_name }}"
+
+Generates a self signed certificate, disable to provide your own certificate
+
+
+    make_dummy_site: True
+
+This is only used to verify the site with molecule, disabling won't affect server build
+
+    site_name: example.com
+
+Set the website name
+
+
+Dependecies
+----------------
+
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: all
+      vars_file: vars/main.yml
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: ned300889.apache }
+
+Inside vars/main.yml
+
+    disable_defaults: true
+    self_signed: True
+    site_name: example.com
 
 License
 -------
 
-BSD
+MIT / GPL v3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Nathan Simpson.
