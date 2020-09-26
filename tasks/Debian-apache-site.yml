@@ -10,7 +10,7 @@
     dest: "{{ apache_path }}/sites-available/{{ site_name }}.conf"
     owner: "{{ apache_user }}"
     mode: 0600
-    when: not st.stat.exists
+  when: not st.stat.exists
 
 - name: Create directories for web root
   file:
