@@ -1,26 +1,23 @@
----
 sudo: required
 language: python
 services:
-  - docker
+- docker
 before_install:
-  - sudo apt-get -qq update
+- sudo apt-get -qq update
 env:
   matrix:
-    - MOLECULE_DISTRO: ubuntu2004
-    - MOLECULE_DISTRO: ubuntu1804
-    - MOLECULE_DISTRO: ubuntu1604
-    - MOLECULE_DISTRO: centos8
-    - MOLECULE_DISTRO: centos7
-
-
+  - MOLECULE_DISTRO: ubuntu2004
+  - MOLECULE_DISTRO: ubuntu1804
+  - MOLECULE_DISTRO: ubuntu1604
+  - MOLECULE_DISTRO: centos8
+  - MOLECULE_DISTRO: centos7
 install:
-  - python3 -m pip install molecule
-  - python3 -m pip install docker
-  - python3 -m pip install ansible-lint
-  # - python3 -m pip install required driver (e.g. docker, shade, boto, apache-libcloud)
+- python3 -m pip install molecule
+- python3 -m pip install docker
+- python3 -m pip install ansible-lint
 script:
-  - molecule test
+- molecule test
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
-  slack: siveyans:UXobOTHh49oRcImEpPLbw9O6
+  slack:
+    secure: qwpBARwdohVbvo5aUZE44oTGHh6G3D1FvEHantxjko5Mgbw6Ksgidqh0hDoFXQDnprseXYUDmXLrH2QXDtIkwdjFJUXP/QxGAMASluG6HIo0h1OBaMy0G14dZ9Dhz27hhoNOnUCYFYTconEHveHFcY8U+TsDtqEH9AgYMtqilsm0V9sdp77WokzhWm+K4aCz1Qmu0rBpdyCJbKwhEXspYrZdH9XBGmDY95EdOkGHSdrd5y4s0WkSXVh8VmkYSoyudsEa0EluN7F/DahxCgUwXj+XhQNuq+2tpE12r+zxvJPjLkrlp5SlZOHsYid/+cQLKLxzNhicNh119ffWJwWAQLKKguavkT3UgLqwYix5Qz431dfTf6AQKKcxmgUtlGiWP7QMfhD3rgtRPH9FXEsrbcEAJ1rxF88FwoTyL74dn+EoLOWlDCRL44gQjaoGPzpCq0AFJi1W2XPzdB5IIctRCJA02H5z6PMoYWxLBoHGe3CrP4pfJb0UkC7B1Qr5HzfP7JX4+Ucr3IWpr3/dvdlLt7qsbw76GvhywogRwmLov++Hgw4lxkTC0zE3Xri22SQNPvJELSJ2iZ7nQBVIfHMAgfZZtu7KtkejJqTxZB8ECUNcnMFkou/99dJISVQ/p3ig2cONx9HmnG0UIza2myHCzjBf/zzH3EbhRrsir3tbObQ=
