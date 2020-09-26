@@ -7,9 +7,6 @@
     state: present
   notify: restart apache
 
-
-
-
 - name: Append sites-enabled configs
   lineinfile:
     dest: "{{ apache_path }}/conf/httpd.conf"

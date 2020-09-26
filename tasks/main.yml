@@ -17,5 +17,3 @@
   systemd:
     name: "{{ web_service_name }}"
     state: started
-
-
