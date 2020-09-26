@@ -4,5 +4,4 @@ apache_user: apache
 __py_ssl:
   - pyopenssl
   - cryptography
-
 web_service_name: httpd
