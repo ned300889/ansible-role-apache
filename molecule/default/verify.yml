@@ -5,6 +5,6 @@
   tasks:
   - name: Verify Apache is serving web requests.
     uri:
-      url: https://localhost/
+      url: http://localhost/
       status_code: 200
       validate_certs: False
