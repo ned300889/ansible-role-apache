@@ -1,5 +1,5 @@
 <VirtualHost *:80 >
-  ServerAlias *
+  ServerName {{ site_name }}
   DocumentRoot {{ document_root }}
   <Directory "{{ document_root }}">
     Options -Indexes +FollowSymLinks -MultiViews
@@ -9,7 +9,7 @@
 </VirtualHost>
 {% if self_signed %}
 <VirtualHost *:443 >
-  ServerAlias *
+  ServerName {{ site_name }}
   DocumentRoot {{ document_root }}
   <Directory "{{ document_root }}">
     Options -Indexes +FollowSymLinks -MultiViews
