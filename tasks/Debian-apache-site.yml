@@ -19,11 +19,11 @@
     dest: "{{ apache_path }}/sites-enabled/{{ site_name }}.conf"
     state: link
 
-- name: Create dummy site  
+- name: Create dummy site
   copy:
     src: dummy.html
     dest: "{{ document_root }}/index.html"
-    mode: 0755 
+    mode: 0755
     owner: "{{ apache_user }}"
     group: "{{ apache_user }}"
   when: make_dummy_site

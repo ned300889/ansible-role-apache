@@ -4,7 +4,7 @@
     name: apache2
     state: present
 
-- name: Enable modules 
+- name: Enable modules
   apache2_module:
     state: present
     name: ssl
@@ -13,4 +13,4 @@
   file:
     path: "{{ apache_path }}sites-enabled/000-default.conf"
     state: absent
-  when: disable_default 
+  when: disable_default

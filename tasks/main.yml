@@ -14,8 +14,8 @@
 - include_tasks: "{{ ansible_os_family }}-ssl.yml"
 
 - name: Start server
-  systemd: 
+  systemd:
     name: "{{ web_service_name }}"
-    state: started  
+    state: started
 
 

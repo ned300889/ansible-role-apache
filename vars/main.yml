@@ -1,4 +1,2 @@
 ---
 # vars file for apache
-site_name: example.com
-document_root: "/srv/www/{{ site_name }}"

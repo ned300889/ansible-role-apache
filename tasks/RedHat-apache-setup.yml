@@ -1,7 +1,7 @@
 ---
 - name: Install apache2
   yum:
-    name: 
+    name:
     - httpd
     - mod_ssl
     state: present
@@ -10,7 +10,7 @@
 
 
 
-- name: Append sites-enabled configs 
+- name: Append sites-enabled configs
   lineinfile:
     dest: "{{ apache_path }}/conf/httpd.conf"
     line: "IncludeOptional sites-enabled/*.conf"

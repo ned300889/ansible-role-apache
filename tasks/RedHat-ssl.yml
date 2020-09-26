@@ -8,12 +8,12 @@
     name: "{{ __py_ssl }}"
     state: present
 
-- name: Create directories for self signed certs 
+- name: Create directories for self signed certs
   file:
     path: "{{ ssl_path }}"
     state: directory
     mode: 0755
-    owner: root 
+    owner: root
   when: self_signed
 
 - name: Generate an OpenSSL private key with the default values (4096 bits, RSA) and a passphrase
