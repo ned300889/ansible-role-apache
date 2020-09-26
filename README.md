@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/ned300889/apache.svg?branch=master)](https://travis-ci.com/ned300889/apache) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Build Status](https://travis-ci.com/ned300889/apache.svg?branch=master)](https://travis-ci.com/ned300889/apache) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Role Name
 =========
