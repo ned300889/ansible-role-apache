@@ -8,9 +8,3 @@
   apache2_module:
     state: present
     name: ssl
-
-- name: Delete default apache site
-  file:
-    path: "{{ apache_path }}sites-enabled/000-default.conf"
-    state: absent
-  when: disable_default
