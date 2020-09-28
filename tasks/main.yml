@@ -7,8 +7,8 @@
 # Setup/install tasks.
 - include_tasks: "{{ ansible_os_family }}-apache-setup.yml"
 
-# Configure server.
-- include_tasks: "{{ ansible_os_family }}-apache-site.yml"
+  ## Configure server.
+  #- include_tasks: "{{ ansible_os_family }}-apache-site.yml"
 
 # Set up certificates.
 - include_tasks: "{{ ansible_os_family }}-ssl.yml"
