@@ -1,19 +1,15 @@
 ---
 # Include variables and define needed variables.
 - name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
-
+  include_vars:  "{{ ansible_os_family }}.yml"
 
 # Setup/install tasks.
 - include_tasks: "{{ ansible_os_family }}-apache-setup.yml"
 
-  ## Configure server.
-  #- include_tasks: "{{ ansible_os_family }}-apache-site.yml"
-
 # Set up certificates.
-- include_tasks: "{{ ansible_os_family }}-ssl.yml"
+- include_tasks:  "{{ ansible_os_family }}-ssl.yml"
 
-- name: Start server
-  systemd:
+- name: Enable service
+  service:
     name: "{{ web_service_name }}"
-    state: started
+    enabled: True
