@@ -21,12 +21,6 @@ Generates a self signed certificate, disable to provide your own certificate
 
     make_dummy_site: True
 
-This is only used to verify the site with molecule, disabling won't affect server build
-
-    site_name: example.com
-
-Set the website name
-
 
 Dependecies
 ----------------
